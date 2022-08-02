@@ -1,0 +1,22 @@
+
+<section id="signIn">
+  <div class=" form w-50 m-auto">
+    <div class="container ">
+      <form [formGroup]="signInForm" (ngSubmit)="signInForm.valid && signInData()">
+
+          <input  [class.is-valid]="signInForm.get('email')?.status=='VALID'" formControlName="email" type="email" placeholder="enter email" class=" form-control my-3">
+          <p *ngIf="signInForm.controls.email.errors?.['required'] && signInForm.controls.email.touched" class="alert alert-danger text-danger p-2 mt-2">email is required</p>
+          <p *ngIf="signInForm.controls.email.errors?.['email']  && signInForm.controls.email.touched " class="alert alert-danger text-danger mt-2 p-2">
+            email not valid
+         </p>
+          <input  [class.is-valid]="signInForm.get('password')?.status=='VALID'" formControlName="password" type="password"placeholder="enter password" class=" form-control my-3">
+          <p *ngIf="signInForm.controls.password.errors?.['required'] && signInForm.controls.password.touched" class="alert alert-danger text-danger p-2 mt-2">password is required</p>
+          <p *ngIf="signInForm.controls.password.errors?.['pattern'] && signInForm.controls.password.touched " class="alert alert-danger text-danger mt-2 p-2">
+            Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+
+          </p>
+          <button class=" btn btn-info">Sign In</button>
+      </form>
+      </div>
+  </div>
+  </section>

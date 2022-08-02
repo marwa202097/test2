@@ -1,0 +1,62 @@
+<section id="signUp">
+<div class=" form w-50 m-auto">
+  <div class="container pt-5">
+
+      <form [formGroup]="registerationForm" (ngSubmit)=" registerationForm.valid &&signUpData()">
+        <div class="row">
+      <div class="col-md-6">
+        <input [class.is-valid]="registerationForm.get('first_name')?.status=='VALID'"  formControlName="first_name" type="text" placeholder="enter first name" class=" form-control py-3">
+        <p *ngIf="registerationForm.controls.first_name.errors?.['required'] && registerationForm.controls.first_name.touched" class="alert alert-danger text-danger p-2 mt-2">first_name is required</p>
+        <p *ngIf="registerationForm.controls.first_name.errors?.['minlength'] && registerationForm.controls.first_name.touched " class="alert alert-danger text-danger p-2 mt-2">
+          first name must be at least 3 chars
+        </p>
+        <p *ngIf="registerationForm.controls.first_name.errors?.['maxlength']  && registerationForm.controls.first_name.touched " class="alert alert-danger text-danger p-2 mt-2">
+          first name must be 12 chars chars
+        </p>
+      </div>
+      <div class="col-md-6">
+        <input [class.is-valid]="registerationForm.get('last_name')?.status=='VALID'" formControlName="last_name" type="text"placeholder="enter last name" class=" form-control py-3">
+        <p *ngIf="registerationForm.controls.last_name.errors?.['required'] && registerationForm.controls.last_name.touched" class="alert alert-danger text-danger p-2 mt-2">last_name is required</p>
+        <p *ngIf="registerationForm.controls.last_name.errors?.['minlength'] && registerationForm.controls.last_name.touched " class="alert alert-danger text-danger p-2 mt-2">
+          first name must be at least 3 chars
+        </p>
+        <p *ngIf="registerationForm.controls.last_name.errors?.['maxlength']  && registerationForm.controls.last_name.touched " class="alert alert-danger text-danger p-2 mt-2">
+          first name must be 12 chars chars
+        </p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 py-3">
+        <input [class.is-valid]="registerationForm.get('email')?.status=='VALID'" formControlName="email" type="email" placeholder="enter email" class=" form-control">
+        <p *ngIf="registerationForm.controls.email.errors?.['required'] && registerationForm.controls.email.touched" class="alert alert-danger text-danger p-2 mt-2">email is required</p>
+        <p *ngIf="registerationForm.controls.email.errors?.['email']  && registerationForm.controls.email.touched " class="alert alert-danger text-danger p-2 mt-2">
+          email not valid
+       </p>
+      </div>
+      <div class="col-md-12 py-3">
+        <input [class.is-valid]="registerationForm.get('age')?.status=='VALID'" formControlName="age" type="number" placeholder="enter your age" class=" form-control">
+        <p *ngIf="registerationForm.controls.age.errors?.['required'] && registerationForm.controls.age.touched" class="alert alert-danger text-danger p-2 mt-2">age is required</p>
+        <p *ngIf="registerationForm.controls.age.errors?.['min'] && registerationForm.controls.age.touched " class="alert alert-danger text-danger p-2 mt-2">
+          min age 10
+          </p>
+          <p *ngIf="registerationForm.controls.age.errors?.['max']  && registerationForm.controls.age.touched " class="alert alert-danger text-danger p-2 mt-2">
+             max age 80
+          </p>
+      </div>
+      <div class="col-md-12 py-3">
+        <input [class.is-valid]="registerationForm.get('password')?.status=='VALID'" formControlName="password" type="password"placeholder="enter password" class=" form-control">
+        <p *ngIf="registerationForm.controls.password.errors?.['required'] && registerationForm.controls.password.touched" class="alert alert-danger text-danger p-2 mt-2">password is required</p>
+        <p *ngIf="registerationForm.controls.password.errors?.['pattern'] && registerationForm.controls.password.touched " class="alert alert-danger text-danger p-2 mt-2">
+          Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+
+        </p>
+      </div>
+      <button [disabled]="registerationForm.invalid" [ngStyle]="registerationForm.invalid?styleIsValid:styleIsInValid" class=" btn btn-info"><span *ngIf="!isClicked">Sign Up</span> <span *ngIf="isClicked">Waiting....</span></button>
+        <div *ngIf="isSuccess" class=" alert alert-success my-2 text-center">{{responseMessage}}</div>
+        <div *ngIf="isUniqueEmail" class=" alert alert-danger my-2 text-center">{{isUniqueEmailMessage}}</div>
+
+      </div>
+  </form>
+  </div>
+</div>
+</section>

@@ -1,0 +1,16 @@
+#profile{
+  min-height: 100vh;
+  background-color: #666;
+}
+.notee
+{
+  min-height: 200px;
+  width: 200px;
+  background-color: #cfc;
+  margin: 20px;
+}
+i , a{
+  cursor: pointer;
+}
+
+
